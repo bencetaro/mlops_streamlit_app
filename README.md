@@ -81,3 +81,11 @@ The project is designed for learning purposes, focusing on the interaction betwe
     ├─ output/
     ├─ requirements.txt
     └─ docker-compose.yml
+
+---
+## Visualization Results
+
+![Streamlit prediction options](https://github.com/bencetaro/mlops_streamlit_app/blob/main/images/streamlit1.png)
+  
+
+![Streamlit visualization](https://github.com/bencetaro/mlops_streamlit_app/blob/main/images/streamlit2.png)
