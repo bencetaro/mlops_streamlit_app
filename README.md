@@ -1,4 +1,5 @@
-# Housing Price Estimator (Demo project using FastAPI & Streamlit)
+# Housing Price Estimator  
+*Demo project using FastAPI & Streamlit*
 
 ## Overview
 
@@ -10,36 +11,7 @@ This project is a mini MLOps demo application that demonstrates how to:
 - Containerize the full stack using Docker and Docker Compose
 - Log predictions into a SQLite database
 
-The project is designed for learning purposes, focusing on the interaction between Data Science and backend/web technologies.
-
----
-
-## Tech Stack
-
-**Backend**
-- FastAPI
-- Uvicorn
-- Pydantic
-- SQLite
-
-**Frontend**
-- Streamlit
-- Matplotlib
-- Seaborn
-
-**Machine Learning**
-- Scikit-learn
-- NumPy
-- Pandas
-- Joblib
-
-**DevOps**
-- Docker
-- Docker Compose
-
----
-
-## Features
+## Featured Services
 
 ### 1. Model Training
 - Synthetic dataset generation
@@ -56,6 +28,7 @@ The project is designed for learning purposes, focusing on the interaction betwe
 - CSV batch upload
 - Batch prediction execution
 - Option to generate charts from the predicitons
+
 
 ---
 ## Project Structure
@@ -83,9 +56,9 @@ The project is designed for learning purposes, focusing on the interaction betwe
     └─ docker-compose.yml
 
 ---
-## Visualization Results
-
+## Webapp snapshots
+### Streamlit prediction options:
 ![Streamlit prediction options](https://github.com/bencetaro/mlops_streamlit_app/blob/main/images/streamlit1.png)
   
-
+### Visualized statistics:
 ![Streamlit visualization](https://github.com/bencetaro/mlops_streamlit_app/blob/main/images/streamlit2.png)
