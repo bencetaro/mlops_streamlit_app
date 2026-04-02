@@ -1,12 +1,14 @@
 import sqlite3
 from datetime import datetime
+from pathlib import Path
 
-DB_PATH = "db/predictions.db"
+DB_PATH = (Path(__file__).resolve().parents[1] / "db" / "predictions.db")
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
 
 def init_db():
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = get_connection()
     cur = conn.cursor()
     # Single prediction table
@@ -32,7 +34,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-def log_single(size, rooms, quality, price):
+def log_single(size, n_rooms, quality, price):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -42,7 +44,7 @@ def log_single(size, rooms, quality, price):
     """, (
         datetime.utcnow().isoformat(),
         size,
-        rooms,
+        n_rooms,
         quality,
         price
     ))

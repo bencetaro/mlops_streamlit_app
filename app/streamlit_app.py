@@ -16,7 +16,7 @@ st.title("Housing Price Estimator with Batch Visualization")
 st.header("Single Prediction")
 
 size = st.slider("Size (m²)", 20, 200, 50)
-rooms = st.slider("Number of rooms", 1, 5, 2)
+n_rooms = st.slider("Number of rooms", 1, 5, 2)
 quality = st.selectbox("Quality", ["Low", "Medium", "High"])
 
 if st.button("Predict"):
@@ -24,7 +24,7 @@ if st.button("Predict"):
         with st.spinner("Calculating prediction..."):
             response = requests.get(
                 f"{API_URL}/predict",
-                params={"size": size, "rooms": rooms, "quality": quality},
+                params={"size": size, "n_rooms": n_rooms, "quality": quality},
                 timeout=TIMEOUT
             )
             response.raise_for_status()
