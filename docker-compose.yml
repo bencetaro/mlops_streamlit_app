@@ -16,6 +16,7 @@ services:
     volumes:
       - ./output:/app/output
       - ./db:/app/db
+    restart: unless-stopped
     depends_on:
       - train
 
