@@ -31,15 +31,15 @@ def startup_event():
     init_db()
 
 @app.get("/predict")
-async def predict(size: float, rooms: int, quality: str):
+async def predict(size: float, n_rooms: int, quality: str):
     q = QUALITY_MAP.get(quality)
     if q is None:
         return {"error": "Invalid quality"}
 
-    X = [[size, rooms, q]]
+    X = [[size, n_rooms, q]]
     pred = model.predict(X)
     price = float(pred[0])
-    log_single(size, rooms, q, price)
+    log_single(size, n_rooms, q, price)
     return {"predicted_price": price}
 
 @app.post("/batch_predict")
@@ -48,4 +48,3 @@ async def batch_predict(items: List[Item]):
     preds = model.predict(X)
     log_batch(len(items), float(preds.mean()))
     return {"predictions": preds.tolist()}
-

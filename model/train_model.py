@@ -4,6 +4,14 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 import joblib
 
+"""
+In this demo project I use synthetic data to train a simple linear regression model for mimicking housing price prediction.
+1. The script generates the data,
+2. Trains a model,
+3. Evaluates the model on a validation set,
+4. Saves the trained model and the test set for later use in an API.
+"""
+
 np.random.seed(42)
 
 size = np.random.randint(20, 200, 400)
