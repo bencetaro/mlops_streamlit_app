@@ -1,0 +1,26 @@
+name: Deploy to Minikube
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/**
+
+jobs:
+  deployment:
+    runs-on: [self-hosted, minikube]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy manifests
+        run: |
+          if [ -d k8s ]; then
+            if ! command -v kubectl &> /dev/null; then
+              echo "kubectl not found. Please install kubectl to deploy to Minikube."
+              exit 1
+            fi
+            kubectl apply -f k8s
+          else
+            echo "No k8s/ directory found. Add manifests to k8s/ to enable deployment."
+          fi
