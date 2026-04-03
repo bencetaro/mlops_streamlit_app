@@ -17,12 +17,20 @@ spec:
     spec:
       containers:
         - name: api
-          image: webapp-demo-api:latest
+          image: saze21/webapp-demo-api:v1.1
           ports:
             - containerPort: 8000
           env:
             - name: PYTHONUNBUFFERED
               value: "1"
+          volumeMounts:
+            - name: output
+              mountPath: /app/output
+              readOnly: true
+      volumes:
+        - name: output
+          persistentVolumeClaim:
+            claimName: output-pvc
 
 ---
 apiVersion: v1
