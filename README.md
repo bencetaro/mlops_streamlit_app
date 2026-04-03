@@ -1,33 +1,44 @@
-# Housing Price Estimator  
-*Demo project using FastAPI & Streamlit*
+# Machine Learning Web Application Demo
+*Demo project using FastAPI & Streamlit, with GitHub Actions for CI/CD.*
 
-## Overview
+The CI/CD workflows include:
+- Test the codebase
+- Build Docker images
+- Push images to Docker Hub
+- (Optional) Deploy services with Kubernetes
 
-This project is a mini MLOps demo application that demonstrates how to:
-- Serve predictions via REST API using FastAPI
-- Build an interactive UI with Streamlit
-- Perform batch predictions from CSV files
-- Visualize prediction statistics and correlations
-- Containerize the full stack using Docker and Docker Compose
-- Log predictions into a SQLite database
-
-## Featured Services
+## Overview of Featured Services
 
 ### 1. Model Training
 - Synthetic dataset generation
 - Model serialization with Joblib
 
 ### 2. FastAPI Service
-- Single prediction endpoint
-- Batch prediction endpoint
 - Input validation using Pydantic
 - SQLite logging of predictions
 
 ### 3. Streamlit UI
 - Interactive single prediction sliders
-- CSV batch upload
-- Batch prediction execution
-- Option to generate charts from the predicitons
+- Single/Batch prediction execution
+- Option to generate charts from the predictions
+
+### 4. Containerized workflow with Docker Compose
+- Image building and service running is handled by Docker Compose
+
+## Overview of Git Practices & GitHub Actions
+
+### GitHub Actions
+
+There are three distinct workflows defined under `.github/workflows/`:
+- `tests.yml` (smoke tests and syntax check)
+- `docker.yml` (build and push Docker images)
+- `deploy.yml` (manual deploy to a Minikube self-hosted runner)
+
+### Git Practices
+Throughout the work, I made different feature branches for better simulation of a production environment practices like:
+- Making new branches for certain tasks.
+- In the new branches, creating several commits after main changes are done.
+- After finishing the work on a branch, making PRs to main branch, and deleting the feature branch.
 
 
 ---
@@ -35,21 +46,21 @@ This project is a mini MLOps demo application that demonstrates how to:
 
     project-root/
     │
-    ├─ api/
-    │ ├─ main.py
-    │ └─ db.py
-    │
-    ├─ app/
-    │ └─ streamlit_app.py
-    │
-    ├─ model/
-    │ └─ train_model.py
+    ├─ src/
+    │  ├─ api/
+    │  │  ├─ main.py
+    │  │  └─ db.py
+    │  ├─ app/
+    │  │  └─ streamlit_app.py
+    │  └─ model/
+    │     └─ train_model.py
     │
     ├─ docker/
-    │ ├─ Dockerfile.train
-    │ ├─ Dockerfile.inference
-    │ └─ Dockerfile.streamlit
+    │  ├─ Dockerfile.train
+    │  ├─ Dockerfile.inference
+    │  └─ Dockerfile.streamlit
     │
+    ├─ k8s/
     ├─ db/
     ├─ output/
     ├─ requirements.txt
