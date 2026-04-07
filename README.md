@@ -46,6 +46,7 @@ This project includes three workflows under `.github/workflows/`:
     - About self-hosted run: Since GitHub runners cannot access a local Minikube cluster. We need to set it up locally:
         1. Go to Settings → Actions → Runners → Download & install
         2. Setup the runner locally like:
+           
         ```bash
         mkdir actions-runner && cd actions-runner
         curl -o actions-runner.tar.gz -L https://...
@@ -53,8 +54,9 @@ This project includes three workflows under `.github/workflows/`:
         ./config.sh --url https://github.com/user/repo-name --token XXX --label minikube
         ./run.sh
         ```
-        - Start Minikube in another terminal
-        - Then GitHub just sends jobs to it
+
+        3. Start Minikube in another terminal
+        4. Then GitHub just sends jobs to it
 
 **Typical CI/CD flow in this repo:**
 
