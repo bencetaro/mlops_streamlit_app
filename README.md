@@ -53,6 +53,7 @@ This project includes three workflows under `.github/workflows/`:
         ./config.sh --url https://github.com/user/repo-name --token XXX --label minikube
         ./run.sh
         ```
+        - Start Minikube in another terminal
         - Then GitHub just sends jobs to it
 
 **Typical CI/CD flow in this repo:**
