@@ -1,0 +1,51 @@
+name: Run initial tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  initial-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest ruff
+
+      - name: Syntax check
+        run: python -m compileall src
+
+      - name: Lint with ruff
+        run: ruff check src tests
+
+      - name: Train model test
+        run: |
+          python src/model/train_model.py
+          if [ -f output/model.pkl ]; then
+            echo "Model trained successfully."
+          else
+            echo "Model training failed: model.pkl not found."
+            exit 1
+          fi
+          test -f output/model.pkl
+
+      - name: Pytest
+        env:
+          PYTHONPATH: src
+        run: pytest -q

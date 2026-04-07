@@ -4,5 +4,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
+ENV PYTHONPATH=/app/src
 
-CMD ["python", "./model/train_model.py"]
+CMD ["python", "src/model/train_model.py"]

@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-job
+  namespace: webapp-demo
+  labels:
+    app: train
+spec:
+  backoffLimit: 1 # Retry once if the job fails
+  template:
+    metadata:
+      labels:
+        app: train
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: train
+          image: saze21/webapp-demo-train:v1.1
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+          volumeMounts:
+            - name: output
+              mountPath: /app/output
+
+      volumes:
+        - name: output
+          persistentVolumeClaim:
+            claimName: output-pvc

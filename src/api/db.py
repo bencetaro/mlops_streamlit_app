@@ -2,7 +2,7 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 
-DB_PATH = (Path(__file__).resolve().parents[1] / "db" / "predictions.db")
+DB_PATH = (Path(__file__).resolve().parents[2] / "db" / "predictions.db")
 
 def get_connection():
     return sqlite3.connect(DB_PATH)

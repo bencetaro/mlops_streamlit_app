@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
 
 API_URL = "http://api:8000"
 TIMEOUT = 5
