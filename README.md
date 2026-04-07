@@ -38,11 +38,12 @@ During this work, I used feature branches to simulate real-world development pra
 ### GitHub Actions
 
 This project includes three workflows under `.github/workflows/`:
-- `tests.yml`: installs dependencies, checks syntax, runs ruff linting, trains the model as a smoke test, and runs pytest.
+- `tests.yml`: Installs dependencies, checks syntax, runs ruff linting, trains the model as a smoke test, and runs pytest.
     - About ruff: A very fast Python tool that checks the code for problems and style issues.
     - About pytest: Another Python tool that automatically runs tests on code to check that it works as expected.
-- `docker.yml`: builds and pushes Docker images for `train`, `api`, and `streamlit` to Docker Hub.
-- `deploy.yml`: manual deploy to a self-hosted Minikube runner.
+- `docker.yml`: Builds and pushes Docker images for `train`, `api`, and `streamlit` to Docker Hub.
+    - **Note:** Docker credentials must be set in: Settings → Secrets and variables → Actions
+- `deploy.yml`: Manual deploy to a self-hosted Minikube runner.
     - About self-hosted run: Since GitHub runners cannot access a Kubernetes clusters. We need to set it up locally:
         1. Install Minikube [(described here)](https://minikube.sigs.k8s.io/docs/start)
         2. Go to Settings → Actions → Runners → New self-hosted runner
