@@ -16,11 +16,16 @@ jobs:
       - name: Deploy manifests
         run: |
           if [ -d k8s ]; then
-            if ! command -v kubectl &> /dev/null; then
-              echo "kubectl not found. Please install kubectl to deploy to Minikube."
+            if command -v kubectl &> /dev/null; then
+              echo "Using kubectl"
+              kubectl apply -f k8s
+            elif command -v minikube &> /dev/null; then
+              echo "Using minikube kubectl"
+              minikube kubectl -- apply -f k8s
+            else
+              echo "Neither kubectl nor minikube found."
               exit 1
             fi
-            kubectl apply -f k8s
           else
             echo "No k8s/ directory found. Add manifests to k8s/ to enable deployment."
           fi

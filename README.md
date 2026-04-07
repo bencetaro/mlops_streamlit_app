@@ -1,4 +1,4 @@
-# Machine Learning Web Application Demo
+# Machine Learning Web Application
 *Demo project using FastAPI & Streamlit, with GitHub Actions for CI/CD.*
 
 ## Overview Of Featured Services
@@ -28,6 +28,7 @@
 ## Overview Of Git Practices & GitHub Actions
 
 ### Git Practices
+
 During this work, I used feature branches to simulate real-world development practices:
 1. Create new branches for specific tasks.
 2. Make multiple commits after major changes.
@@ -41,7 +42,18 @@ This project includes three workflows under `.github/workflows/`:
     - About ruff: A very fast Python tool that checks the code for problems and style issues.
     - About pytest: Another Python tool that automatically runs tests on code to check that it works as expected.
 - `docker.yml`: builds and pushes Docker images for `train`, `api`, and `streamlit` to Docker Hub.
-- `deploy.yml`: manual deploy to a Minikube runner.
+- `deploy.yml`: manual deploy to a self-hosted Minikube runner.
+    - About self-hosted run: Since GitHub runners cannot access a local Minikube cluster. We need to set it up locally:
+        1. Go to Settings → Actions → Runners → Download & install
+        2. Setup the runner locally like:
+        ```bash
+        mkdir actions-runner && cd actions-runner
+        curl -o actions-runner.tar.gz -L https://...
+        tar xzf ./actions-runner.tar.gz
+        ./config.sh --url https://github.com/user/repo-name --token XXX --label minikube
+        ./run.sh
+        ```
+        - Then GitHub just sends jobs to it
 
 **Typical CI/CD flow in this repo:**
 
