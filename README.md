@@ -43,9 +43,10 @@ This project includes three workflows under `.github/workflows/`:
     - About pytest: Another Python tool that automatically runs tests on code to check that it works as expected.
 - `docker.yml`: builds and pushes Docker images for `train`, `api`, and `streamlit` to Docker Hub.
 - `deploy.yml`: manual deploy to a self-hosted Minikube runner.
-    - About self-hosted run: Since GitHub runners cannot access a local Minikube cluster. We need to set it up locally:
-        1. Go to Settings → Actions → Runners → Download & install
-        2. Setup the runner locally like:
+    - About self-hosted run: Since GitHub runners cannot access a Kubernetes clusters. We need to set it up locally:
+        1. Install Minikube [(described here)](https://minikube.sigs.k8s.io/docs/start)
+        2. Go to Settings → Actions → Runners → New self-hosted runner
+        4. Setup the runner locally like:
            
         ```bash
         mkdir actions-runner && cd actions-runner
@@ -55,8 +56,8 @@ This project includes three workflows under `.github/workflows/`:
         ./run.sh
         ```
 
-        3. Start Minikube in another terminal
-        4. Then GitHub just sends jobs to it
+        4. Start Minikube in another terminal
+        5. Then GitHub just sends jobs to it
 
 **Typical CI/CD flow in this repo:**
 
