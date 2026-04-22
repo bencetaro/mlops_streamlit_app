@@ -41,13 +41,17 @@ This project includes three workflows under `.github/workflows/`:
 - `tests.yml`: Installs dependencies, checks syntax, runs ruff linting, trains the model as a smoke test, and runs pytest.
     - About ruff: A very fast Python tool that checks the code for problems and style issues.
     - About pytest: Another Python tool that automatically runs tests on code to check that it works as expected.
+
 - `docker.yml`: Builds and pushes Docker images for `train`, `api`, and `streamlit` to Docker Hub.
     - **Note:** Docker credentials must be set in: Settings → Secrets and variables → Actions
+      
 - `deploy.yml`: Manual deploy to a self-hosted Minikube runner.
+    - **Note:** Never allow PR in wf file along with self-hosted runner! (GitHub warns about it as well)
     - About self-hosted run: Since GitHub runners cannot access a Kubernetes clusters. We need to set it up locally:
+
         1. Install Minikube [(described here)](https://minikube.sigs.k8s.io/docs/start)
         2. Go to Settings → Actions → Runners → New self-hosted runner
-        4. Setup the runner locally like:
+        3. Setup the runner locally like:
            
         ```bash
         mkdir actions-runner && cd actions-runner
